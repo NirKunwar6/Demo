@@ -31,23 +31,37 @@ body {
    Brand: Mrtechnician
    Logic: Total Viewport Anchor
 */
+.side-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 12px;
+
+    backdrop-filter: blur(10px);
+}
+
+.menu-items a {
+    display: block;
+    color: white;
+    padding: 8px 12px;
+    margin: 5px 0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu-items a:hover {
+    background: gold;
+    color: black;
+    border-radius: 5px;
+}
+
 
 .side-menu {
-    /* LOCKING MECHANISM */
-    position: fixed !important;  /* Locks to the screen window, not the page */
-    top: 40px !important;        /* Exact distance from the top of the screen */
-    right: 25px !important;      /* Exact distance from the right of the screen */
-    
-    /* PREVENT MOVEMENT */
-    z-index: 10000 !important;   /* Stays above everything (photo, text, etc.) */
-    pointer-events: auto;        /* Ensures buttons remain clickable */
-    
-    /* FORCED VERTICAL ALIGNMENT */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end;
-    gap: 8px;
-    
+
     /* PREVENT TRANSFORM DRIFT */
     transform: none !important;  
 }
