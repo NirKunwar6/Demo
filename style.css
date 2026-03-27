@@ -31,55 +31,63 @@ body {
    Brand: Mrtechnician
    Logic: Total Viewport Anchor
 */
+
 .side-menu {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 9999;
 
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
-    border-radius: 12px;
+    z-index: 99999;
 
-    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+
+    background: rgba(0, 0, 0, 0.65);
+    padding: 12px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+
+    margin: 0;
+}
+
+/* ===== MENU ITEMS ===== */
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .menu-items a {
-    display: block;
-    color: white;
-    padding: 8px 12px;
-    margin: 5px 0;
+    color: #ffffff;
     text-decoration: none;
-    transition: 0.3s;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    padding: 6px 10px;
+    border-radius: 5px;
+
+    transition: 0.3s ease;
 }
 
 .menu-items a:hover {
-    background: gold;
+    background: #D4AF37;
     color: black;
-    border-radius: 5px;
+}
+
+/* ===== EXTRA FIX (PREVENT ANY SHIFT) ===== */
+body {
+    overflow-x: hidden;
+}
+
+.full-section {
+    position: relative;
 }
 
 
-.side-menu {
-
-    /* PREVENT TRANSFORM DRIFT */
-    transform: none !important;  
-}
-
-.menu-items {
-    display: flex !important;
-    flex-direction: column !important; /* Keep buttons stacked vertically */
-    gap: 5px;
-}
-
-.menu-items a {
-    color: #ffffff !important;
-    text-decoration: none;
-    font-size: 0.55rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    
-    /* Visuals */
+   /* Visuals */
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     padding: 10px 15px;
