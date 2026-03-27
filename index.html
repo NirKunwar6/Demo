@@ -171,17 +171,7 @@ window.addEventListener("load", () => {
         }
 
         // AI RESPONSE
-        if (!puter || !puter.ai) {
-            chatBox.innerHTML += `<div class="bot">AI Assistant is currently unavailable.</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-            return;
-        }
-
-        try {
-            const response = await puter.ai.chat({
-               messages: [
-                { role: "system", content: `
-You are the official AI assistant of Nirdeshan Kunwar.
+        cons NIR_BRAIN = `You are the official AI assistant of Nirdeshan Kunwar.
 
 Your job is to represent him professionally, confidently, and intelligently.
 
@@ -244,47 +234,57 @@ Tone:
 - Professional
 - Slightly friendly
 
-Keep answers short but impactful.
-` },
-                { role: "user", content: userText }
-            ]
-        });
-                
-                
-                
-    
-          const reply = response.message.content;
-            chatBox.innerHTML += `<div class="bot">${reply}</div>`;
-
-            if (userText.toLowerCase().includes("yes")) {
-                contactStep = 1;
-                chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
-            }
-
-          if (!puter || !puter.ai) {
-    chatBox.innerHTML += `<div class="bot">AI Assistant is currently unavailable. You can ask Nir directly via Instagram or WhatsApp.</div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
-    return;
-          }
+Keep answers short but impactful.`;
             
-        } catch (err) {
-            chatBox.innerHTML += `<div class="bot">Error connecting to AI. Please try again later.</div>`;
-            console.error(err);
+                async function send() {
+        const input = document.getElementById('userInput');
+        const box = document.getElementById('chatContainer');
+        if (!input.value.trim()) return;
+
+        const val = input.value;
+        box.innerHTML += `<div class="msg user-bubble">${val}</div>`;
+        input.value = '';
+        box.scrollTop = box.scrollHeight;
+
+        // --- TYPING INDICATOR ADDED HERE ---
+        const typingId = "typing-" + Date.now();
+        box.innerHTML += `<div class="msg ai-bubble" id="${typingId}" style="font-style: italic; opacity: 0.7;">Typing...</div>`;
+        box.scrollTop = box.scrollHeight;
+
+        try {
+            const resp = await puter.ai.chat([
+                { role: "system", content: NIR_BRAIN },
+                { role: "user", content: val }
+            ]);
+
+            const aiText = resp.message.content;
+
+            // --- REMOVE TYPING INDICATOR AND ADD REAL RESPONSE ---
+            const typingMsg = document.getElementById(typingId);
+            if(typingMsg) typingMsg.remove();
+
+            box.innerHTML += `<div class="msg ai-bubble">${aiText}</div>`;
+            box.scrollTop = box.scrollHeight;
+
+            emailjs.send('service_3d9vhhkzm', 'template_4tkhavgq', {
+                user_message: val,
+                ai_response: aiText
+            });
+
+        } catch (e) { 
+            const typingMsg = document.getElementById(typingId);
+            if(typingMsg) typingMsg.innerText = "Connection lost. Please try again.";
+            console.error(e); 
         }
-
-        chatBox.scrollTop = chatBox.scrollHeight;
     }
-
-    document.getElementById("userInput").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") sendMessage();
-    });
-
-    // make send button work
-    document.querySelector(".chat-btn").addEventListener("click", sendMessage);
-});
-                </script>
-</html>     
+</script>
+</body>
+</html>
+            
     
+          
+
+
     
     
     
