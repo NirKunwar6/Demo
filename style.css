@@ -2,109 +2,69 @@
    Owner: Nirdeshan Kunwar
    Updates: Slimmer Navigation & Typing Animation
 */
-
 :root {
-    --gold: #D4AF37;
-    --bg-black: #050505;
-    --pure-white: #ffffff;
-    --text-gray: #cccccc;
+--gold: #D4AF37;
+--bg-black: #050505;
+--pure-white: #ffffff;
+--text-gray: #cccccc;
 }
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-html { 
-    scroll-behavior: smooth; 
+
+html {
+scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-black);
-    color: var(--pure-white);
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+background-color: var(--bg-black);
+color: var(--pure-white);
+font-family: 'Poppins', sans-serif;
+overflow-x: hidden;
 }
 
-/* ULTRA-STATIONARY VERTICAL MENU 
-   Brand: Mrtechnician
-   Logic: Total Viewport Anchor
+/* ULTRA-STATIONARY VERTICAL MENU
+Brand: Mrtechnician
+Logic: Total Viewport Anchor
 */
 
-/* 1. Reset the Body to allow fixed positioning to work */
-body {
-    background-color: var(--bg-black);
-    color: var(--pure-white);
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    /* Remove 'overflow-x: hidden' from body if it's causing issues, 
-       or ensure no transforms are applied here */
-    position: relative; 
-}
-
-/* 2. The Absolute Fixed Sidebar */
 .side-menu {
-    position: fixed !important;    /* Locks it to the SCREEN, not the page */
-    top: 40px !important;          /* Distance from top of browser window */
-    right: 25px !important;        /* Distance from right of browser window */
-    z-index: 99999 !important;     /* Highest possible layer */
-    
-    /* Force ignore any parent constraints */
-    transform: none !important;
-    perspective: none !important;
-    filter: none !important;
+/* LOCKING MECHANISM /
+position: fixed !important;  / Locks to the screen window, not the page /
+top: 40px !important;        / Exact distance from the top of the screen /
+right: 25px !important;      / Exact distance from the right of the screen */
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    gap: 15px !important;
-    pointer-events: auto !important;
-}
+/* PREVENT MOVEMENT */  
+z-index: 10000 !important;   /* Stays above everything (photo, text, etc.) */  
+pointer-events: auto;        /* Ensures buttons remain clickable */  
+  
+/* FORCED VERTICAL ALIGNMENT */  
+display: flex !important;  
+flex-direction: column !important;  
+align-items: flex-end;  
+gap: 8px;  
+  
+/* PREVENT TRANSFORM DRIFT */  
+transform: none !important;
 
-/* 3. Ensure the main content doesn't overlap or shift the menu */
-main {
-    display: block;
-    width: 100%;
-}
-
-
-
-.side-menu {
-    position: fixed !important;       /* Locks sidebar to viewport */
-    top: 40px !important;             /* Distance from top of viewport */
-    right: 25px !important;           /* Distance from right of viewport */
-    z-index: 10000 !important;        /* Always on top */
-    
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    gap: 8px !important;
-
-    pointer-events: auto !important;  /* Buttons stay clickable */
-    
-    margin: 0 !important;             /* Prevent inherited margins */
-    padding: 0 !important;            /* Prevent inherited padding */
-    transform: none !important;       /* Prevent any transform drift */
 }
 
 .menu-items {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 5px !important;
-    margin: 0 !important;
-    padding: 0 !important;
+display: flex !important;
+flex-direction: column !important; /* Keep buttons stacked vertically */
+gap: 5px;
 }
 
 .menu-items a {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    font-size: 0.55rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    display: block !important;        /* Ensures proper spacing */
-}
+color: #ffffff !important;
+text-decoration: none;
+font-size: 0.55rem;
+font-weight: 700;
+text-transform: uppercase;
 
 
 /* Visuals */
