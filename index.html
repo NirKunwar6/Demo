@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<script src="https://js.puter.com/v2/"></script>
-
 <style>
 /* Chat UI */
 .chat-box {
@@ -63,8 +61,7 @@
     <header id="hero" class="full-section">
         <div class="content-limit">
             <div class="photo-box">
-                <img src="IMG_20260107_122423_899.webp
-                    " alt="Nirdeshan Kunwar">
+                <img src="IMG_20260107_122423_899.webp" alt="Nirdeshan Kunwar">
             </div>
             <h1 class="main-name">NIRDESHAN<br><span>KUNWAR</span></h1>
             <p class="hero-labels">Digital Creator • Cricketer • CS Student</p>
@@ -110,32 +107,33 @@
         <div class="content-limit">
             <h2 class="section-title">VISUAL GALLERY</h2>
             <div class="gallery-grid">
-                <div class="img-frame"><img src="IMG_20250715_154508.jpg"></div><div class="img-frame"><img src="IMG-20250520-WA0009.jpg"></div>
-                <div class="img-frame"><img src="IMG_20251211_170350.jpg
-                                           "></div><div class="img-frame"><img src="1769431596060.jpg"></div>
-                <div class="img-frame"><img src="IMG_20260107_122423_899.webp"></div><div class="img-frame"><img src="IMG_20260307_175246.jpg"></div>
-                <div class="img-frame"><img src="1766114093638.jpg"></div><div class="img-frame"><img src="IMG-20250520-WA0008.jpg"></div>
+                <div class="img-frame"><img src="IMG_20250715_154508.jpg"></div>
+                <div class="img-frame"><img src="IMG-20250520-WA0009.jpg"></div>
+                <div class="img-frame"><img src="IMG_20251211_170350.jpg"></div>
+                <div class="img-frame"><img src="1769431596060.jpg"></div>
+                <div class="img-frame"><img src="IMG_20260107_122423_899.webp"></div>
+                <div class="img-frame"><img src="IMG_20260307_175246.jpg"></div>
+                <div class="img-frame"><img src="1766114093638.jpg"></div>
+                <div class="img-frame"><img src="IMG-20250520-WA0008.jpg"></div>
             </div>
         </div>
     </section>
 
-</body>
+    <!-- ✅ AI ASSISTANT SECTION -->
+    <section id="assistant" class="full-section">
+        <div class="content-limit">
+            <h2 class="section-title">PERSONAL AI ASSISTANT</h2>
 
-<!-- ✅ AI ASSISTANT SECTION -->
-<section id="assistant" class="full-section">
-    <div class="content-limit">
-        <h2 class="section-title">PERSONAL AI ASSISTANT</h2>
+            <div class="chat-box" id="chatBox"></div>
 
-        <div class="chat-box" id="chatBox"></div>
-
-        <input type="text" id="userInput" class="chat-input" placeholder="Ask anything about Nir...">
-        <button class="chat-btn" onclick="sendMessage()">Send</button>
-    </div>
-</section>
+            <input type="text" id="userInput" class="chat-input" placeholder="Ask anything about Nir...">
+            <button class="chat-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </section>
 
 <script>
 
-let contactStep = 0;
+  let contactStep = 0;
 let contactData = {};
 
 async function sendMessage() {
@@ -271,4 +269,14 @@ document.getElementById("userInput").addEventListener("keypress", function(e) {
 
 </script>
 
-</html>   
+</html>     
+    
+    
+    
+    
+    
+
+
+
+
+    
