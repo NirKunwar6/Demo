@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nirdeshan Kunwar | Journey</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://js.puter.com/v2/"></script>
+
+<style>
+/* Chat UI */
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    background: #111;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.user {
+    text-align: right;
+    color: #fff;
+    margin: 5px;
+}
+
+.bot {
+    text-align: left;
+    color: gold;
+    margin: 5px;
+}
+
+.chat-input {
+    width: 70%;
+    padding: 10px;
+}
+
+.chat-btn {
+    padding: 10px;
+    background: gold;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+    <nav class="side-menu">
+        <div class="side-logo">About</div>
+        <div class="menu-items">
+            <a href="#hero">Home</a>
+            <a href="#journey">Journey</a>
+            <a href="#achievements">Progression</a>
+            <a href="#vision">Vision</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Message</a>
+        </div>
+    </nav>
+
+    <header id="hero" class="full-section">
+        <div class="content-limit">
+            <div class="photo-box">
+                <img src="IMG_20260107_122423_899.webp
+                    " alt="Nirdeshan Kunwar">
+            </div>
+            <h1 class="main-name">NIRDESHAN<br><span>KUNWAR</span></h1>
+            <p class="hero-labels">Digital Creator • Cricketer • CS Student</p>
+        </div>
+    </header>
+
+    <section id="journey" class="full-section">
+        <div class="content-limit">
+            <h2 class="section-title">JOURNEY (BIO)</h2>
+            <div class="paragraph-box">
+                <p> Nirdeshan Kunwar Born in Achham, Nepal. He began his journey with a strong foundation, passing his metric-level studies from <strong>Shree Kinder Garden Academy</strong> in Sanfebagar, Achham. He now resides in Kathmandu with his brother,<strong>Lokendra Kunwar</strong>, where he balances his academic and athletic ambitions with a disciplined lifestyle.Nirdeshan Kunwar is a student of Computer Science at GoldenGate College and a dedicated cricketer, Currently training at Kathmandu Cricket Academy in Kathmandu, Nepal. He is known for his disciplined lifestyle, strong work ethic, and commitment to continuous improvement both in sports and academics.</p>
+                <p>As a young cricketer, Nirdeshan focuses on developing his batting skills, match awareness, and overall fitness while working every day to move closer to his goal of playing cricket at a professional level. His passion for the sport is reflected in his consistent training, competitive mindset, and determination to perform under pressure.</p>
+                <p>He is the son of <strong>Devraj Kunwar and Kaushilla Devi Kunwar</strong>, whom he proudly considers the best parents and a constant source of motivation in his life.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="full-section">
+        <div class="content-limit">
+            <h2 class="section-title">PROGRESSION </h2>
+            <div class="points-box">
+                <ul>
+                    <li>Represented District at U16, U19 & 10th National Tournament.</li>
+                    <li>Winner of Player of the Tournament at SEE Camp 2082.</li>
+                    <li>Awarded Man of the Match in two matches of the same tournament.</li>
+                    <li>Scored 80 runs in the opening match and 52 runs in the final.</li>
+                    <li>Represent District in PM CUP 2082.</li>
+                    <li>Winning captain of Municipality chairperson's cup 2080.</li>
+                    <li>Awarded the Best Batsman of Goldengate International College 2082.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="full-section dark-alt">
+        <div class="content-limit">
+            <h2 class="section-title gold-title">MY PHILOSOPHY</h2>
+            <p class="philosophy-quote">"Dream without limits, Work without excuses, Fail with courage, Rise with purpose, Leave a legacy that inspires."</p>
+        </div>
+    </section>
+
+    <section id="gallery" class="full-section">
+        <div class="content-limit">
+            <h2 class="section-title">VISUAL GALLERY</h2>
+            <div class="gallery-grid">
+                <div class="img-frame"><img src="IMG_20250715_154508.jpg"></div><div class="img-frame"><img src="IMG-20250520-WA0009.jpg"></div>
+                <div class="img-frame"><img src="IMG_20251211_170350.jpg
+                                           "></div><div class="img-frame"><img src="1769431596060.jpg"></div>
+                <div class="img-frame"><img src="IMG_20260107_122423_899.webp"></div><div class="img-frame"><img src="IMG_20260307_175246.jpg"></div>
+                <div class="img-frame"><img src="1766114093638.jpg"></div><div class="img-frame"><img src="IMG-20250520-WA0008.jpg"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="full-section">
+        <div class="content-limit">
+            <h2 class="section-title">SEND A MESSAGE</h2>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/nirkunwar6@gmail.com" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <textarea name="message" rows="5" placeholder="Write your Message For Nir..." required></textarea>
+                    <button type="submit" class="oscar-btn">SEND MESSAGES</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+<!-- ✅ AI ASSISTANT SECTION -->
+<section id="assistant" class="full-section">
+    <div class="content-limit">
+        <h2 class="section-title">PERSONAL AI ASSISTANT</h2>
+
+        <div class="chat-box" id="chatBox"></div>
+
+        <input type="text" id="userInput" class="chat-input" placeholder="Ask anything about Nir...">
+        <button class="chat-btn" onclick="sendMessage()">Send</button>
+    </div>
+</section>
+
+<script>
+
+let contactStep = 0;
+let contactData = {};
+
+async function sendMessage() {
+
+    let input = document.getElementById("userInput");
+    let chatBox = document.getElementById("chatBox");
+
+    let userText = input.value.trim();
+    if (!userText) return;
+
+    chatBox.innerHTML += `<div class="user">${userText}</div>`;
+    input.value = "";
+
+    // CONTACT FLOW
+    if (contactStep === 1) {
+        contactData.name = userText;
+        contactStep = 2;
+        chatBox.innerHTML += `<div class="bot">How do you know Nir?</div>`;
+        return;
+    }
+
+    if (contactStep === 2) {
+        contactData.relation = userText;
+        contactStep = 3;
+        chatBox.innerHTML += `<div class="bot">What is the reason you want to contact him?</div>`;
+        return;
+    }
+
+    if (contactStep === 3) {
+        contactData.reason = userText;
+        contactStep = 0;
+
+        chatBox.innerHTML += `<div class="bot">Thank you ${contactData.name}. Nir will review your request.</div>`;
+        console.log(contactData);
+        return;
+    }
+
+    // AI RESPONSE
+    let response = await puter.ai.chat({
+        messages: [
+            {
+                role: "system",
+                content: `You are the official AI assistant of Nirdeshan Kunwar.
+
+Your job is to represent him professionally, confidently, and intelligently.
+
+========================
+👤 ABOUT NIRDESHAN KUNWAR
+========================
+Nirdeshan Kunwar is a dedicated cricketer and a Computer Science student from Nepal.
+
+He was born in Achham, Nepal, and completed his early education at Shree Kinder Garden Academy in Sanfebagar, Achham.
+
+Currently, he lives in Kathmandu with his brother Lokendra Kunwar, where he is pursuing his academic and athletic journey with discipline and focus.
+
+He studies Computer Science at GoldenGate College and trains regularly at Kathmandu Cricket Academy.
+
+As a cricketer, he is focused on:
+- Improving batting skills
+- Match awareness
+- Fitness and discipline
+- Performing under pressure
+
+He aims to become a professional cricketer.
+
+He is known for:
+- Strong work ethic
+- Consistency
+- Discipline
+- Growth mindset
+
+He is the son of Devraj Kunwar and Kaushilla Devi Kunwar, who are his biggest motivation.
+
+========================
+🤖 YOUR BEHAVIOR RULES
+========================
+
+1. Always answer clearly, professionally, and confidently.
+
+2. If user asks about Nir:
+→ Give a clean, powerful, slightly short professional introduction.
+
+3. If user asks casual questions:
+→ Answer in a friendly but smart way.
+
+4. If user asks anything unrelated or inappropriate:
+→ Respond:
+"I can’t talk about that. You can directly contact Nir for more details via Instagram or WhatsApp. If you want his contact, I can help you."
+
+5. If user says "yes" or asks for contact:
+→ Start collecting info step by step:
+   - Ask: "What is your name?"
+   - Then: "How do you know Nir?"
+   - Then: "What is the reason you want to contact him?"
+
+6. Never give random answers.
+7. Never break character.
+8. Always act like a real assistant of Nir.
+
+Tone:
+- Confident
+- Motivational
+- Professional
+- Slightly friendly
+
+Keep answers short but impactful.`
+
+            },
+            {
+                role: "user",
+                content: userText
+            }
+        ]
+    });
+
+    let reply = response.message.content;
+
+    chatBox.innerHTML += `<div class="bot">${reply}</div>`;
+
+    // detect YES
+    if (userText.toLowerCase().includes("yes")) {
+        contactStep = 1;
+        chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
+    }
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ENTER KEY SUPPORT
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+});
+
+</script>
+
+</html>   
