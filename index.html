@@ -131,17 +131,18 @@
         </div>
     </section>
 
+<!-- Load puter.com library -->
+<script src="https://js.puter.com/v2/"></script>
 
-<script src="https://js.puter.com/v2/">
-  let contactStep = 0;
+<!-- Your custom JS -->
+<script>
+let contactStep = 0;
 let contactData = {};
 
 async function sendMessage() {
-
-    let input = document.getElementById("userInput");
-    let chatBox = document.getElementById("chatBox");
-
-    let userText = input.value.trim();
+    const input = document.getElementById("userInput");
+    const chatBox = document.getElementById("chatBox");
+    const userText = input.value.trim();
     if (!userText) return;
 
     chatBox.innerHTML += `<div class="user">${userText}</div>`;
@@ -165,18 +166,24 @@ async function sendMessage() {
     if (contactStep === 3) {
         contactData.reason = userText;
         contactStep = 0;
-
         chatBox.innerHTML += `<div class="bot">Thank you ${contactData.name}. Nir will review your request.</div>`;
         console.log(contactData);
         return;
     }
 
+    // Check if puter.ai exists
+    if (typeof puter === "undefined" || !puter.ai) {
+        chatBox.innerHTML += `<div class="bot">AI Assistant is currently unavailable. Please try again later.</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return;
+    }
+
     // AI RESPONSE
-    let response = await puter.ai.chat({
-        messages: [
-            {
-                role: "system",
-                content: `You are the official AI assistant of Nirdeshan Kunwar.
+    try {
+        const response = await puter.ai.chat({
+            messages: [
+                { role: "system", content: `
+You are the official AI assistant of Nirdeshan Kunwar.
 
 Your job is to represent him professionally, confidently, and intelligently.
 
@@ -239,24 +246,24 @@ Tone:
 - Professional
 - Slightly friendly
 
-Keep answers short but impactful.`
+Keep answers short but impactful.
+` },
+                { role: "user", content: userText }
+            ]
+        });
 
-            },
-            {
-                role: "user",
-                content: userText
-            }
-        ]
-    });
+        const reply = response.message.content;
+        chatBox.innerHTML += `<div class="bot">${reply}</div>`;
 
-    let reply = response.message.content;
+        // detect YES
+        if (userText.toLowerCase().includes("yes")) {
+            contactStep = 1;
+            chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
+        }
 
-    chatBox.innerHTML += `<div class="bot">${reply}</div>`;
-
-    // detect YES
-    if (userText.toLowerCase().includes("yes")) {
-        contactStep = 1;
-        chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
+    } catch (err) {
+        chatBox.innerHTML += `<div class="bot">Error connecting to AI. Please try again later.</div>`;
+        console.error(err);
     }
 
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -266,9 +273,7 @@ Keep answers short but impactful.`
 document.getElementById("userInput").addEventListener("keypress", function(e) {
     if (e.key === "Enter") sendMessage();
 });
-
 </script>
-
 </html>     
     
     
