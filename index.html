@@ -131,57 +131,55 @@
         </div>
     </section>
 
-<!-- Load puter.com library -->
+<!-- Load Puter.com library -->
 <script src="https://js.puter.com/v2/"></script>
 
-<!-- Your custom JS -->
+<!-- Custom JS for your assistant -->
 <script>
-let contactStep = 0;
-let contactData = {};
+window.addEventListener("load", () => {
+    let contactStep = 0;
+    let contactData = {};
 
-async function sendMessage() {
-    const input = document.getElementById("userInput");
-    const chatBox = document.getElementById("chatBox");
-    const userText = input.value.trim();
-    if (!userText) return;
+    async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const chatBox = document.getElementById("chatBox");
+        const userText = input.value.trim();
+        if (!userText) return;
 
-    chatBox.innerHTML += `<div class="user">${userText}</div>`;
-    input.value = "";
+        chatBox.innerHTML += `<div class="user">${userText}</div>`;
+        input.value = "";
 
-    // CONTACT FLOW
-    if (contactStep === 1) {
-        contactData.name = userText;
-        contactStep = 2;
-        chatBox.innerHTML += `<div class="bot">How do you know Nir?</div>`;
-        return;
-    }
+        // contact flow
+        if (contactStep === 1) {
+            contactData.name = userText;
+            contactStep = 2;
+            chatBox.innerHTML += `<div class="bot">How do you know Nir?</div>`;
+            return;
+        }
+        if (contactStep === 2) {
+            contactData.relation = userText;
+            contactStep = 3;
+            chatBox.innerHTML += `<div class="bot">What is the reason you want to contact him?</div>`;
+            return;
+        }
+        if (contactStep === 3) {
+            contactData.reason = userText;
+            contactStep = 0;
+            chatBox.innerHTML += `<div class="bot">Thank you ${contactData.name}. Nir will review your request.</div>`;
+            console.log(contactData);
+            return;
+        }
 
-    if (contactStep === 2) {
-        contactData.relation = userText;
-        contactStep = 3;
-        chatBox.innerHTML += `<div class="bot">What is the reason you want to contact him?</div>`;
-        return;
-    }
+        // AI RESPONSE
+        if (!puter || !puter.ai) {
+            chatBox.innerHTML += `<div class="bot">AI Assistant is currently unavailable.</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return;
+        }
 
-    if (contactStep === 3) {
-        contactData.reason = userText;
-        contactStep = 0;
-        chatBox.innerHTML += `<div class="bot">Thank you ${contactData.name}. Nir will review your request.</div>`;
-        console.log(contactData);
-        return;
-    }
-
-    // Check if puter.ai exists
-    if (typeof puter === "undefined" || !puter.ai) {
-        chatBox.innerHTML += `<div class="bot">AI Assistant is currently unavailable. Please try again later.</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-        return;
-    }
-
-    // AI RESPONSE
-    try {
-        const response = await puter.ai.chat({
-            messages: [
+        try {
+            const response = await puter.ai.chat({
+               messages: [
                 { role: "system", content: `
 You are the official AI assistant of Nirdeshan Kunwar.
 
@@ -251,29 +249,37 @@ Keep answers short but impactful.
                 { role: "user", content: userText }
             ]
         });
+                
+                
+                
+    
+                
+                
 
-        const reply = response.message.content;
-        chatBox.innerHTML += `<div class="bot">${reply}</div>`;
+            const reply = response.message.content;
+            chatBox.innerHTML += `<div class="bot">${reply}</div>`;
 
-        // detect YES
-        if (userText.toLowerCase().includes("yes")) {
-            contactStep = 1;
-            chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
+            if (userText.toLowerCase().includes("yes")) {
+                contactStep = 1;
+                chatBox.innerHTML += `<div class="bot">What is your name?</div>`;
+            }
+
+        } catch (err) {
+            chatBox.innerHTML += `<div class="bot">Error connecting to AI. Please try again later.</div>`;
+            console.error(err);
         }
 
-    } catch (err) {
-        chatBox.innerHTML += `<div class="bot">Error connecting to AI. Please try again later.</div>`;
-        console.error(err);
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
+    document.getElementById("userInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
 
-// ENTER KEY SUPPORT
-document.getElementById("userInput").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") sendMessage();
+    // make send button work
+    document.querySelector(".chat-btn").addEventListener("click", sendMessage);
 });
-</script>
+                </script>
 </html>     
     
     
