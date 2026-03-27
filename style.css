@@ -124,7 +124,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-    position: relative;
+    position: fixed;
     
     /* Glow effect */
     filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
@@ -132,13 +132,13 @@ body {
 
 /* Pulsing Aura behind the header */
 .glow-wrapper {
-    position: relative;
+    position: fixed;
     display: inline-block;
 }
 
 .glow-wrapper::after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
