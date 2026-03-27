@@ -31,61 +31,50 @@ body {
    Brand: Mrtechnician
    Logic: Total Viewport Anchor
 */
-
 .side-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position: fixed !important;       /* Locks sidebar to viewport */
+    top: 40px !important;             /* Distance from top of viewport */
+    right: 25px !important;           /* Distance from right of viewport */
+    z-index: 10000 !important;        /* Always on top */
+    
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
 
-    z-index: 99999;
+    pointer-events: auto !important;  /* Buttons stay clickable */
+    
+    margin: 0 !important;             /* Prevent inherited margins */
+    padding: 10px 15px !important;    /* Your padding */
+    width: 100px !important;
+    text-align: right !important;
+    white-space: nowrap !important;
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-right: 3px solid #D4AF37 !important;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-
-    background: rgba(0, 0, 0, 0.65);
-    padding: 12px;
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
-
-    margin: 0;
-}
-
-/* ===== MENU ITEMS ===== */
-.menu-items {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    /* REMOVE transition to prevent drift */
+    transition: none !important;  
 }
 
 .menu-items a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 0.55rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    padding: 5px 0 !important;
 
-    padding: 6px 10px;
-    border-radius: 5px;
-
-    transition: 0.3s ease;
+    /* Hover only affects color & width */
+    transition: background 0.3s, color 0.3s, width 0.3s !important;
 }
 
 .menu-items a:hover {
-    background: #D4AF37;
-    color: black;
+    background: #D4AF37 !important;
+    color: #000000 !important;
+    width: 115px !important;
 }
-
-/* ===== EXTRA FIX (PREVENT ANY SHIFT) ===== */
-body {
-    overflow-x: hidden;
-}
-
-.full-section {
-    position: relative;
-}
-
 
    /* Visuals */
     background: rgba(10, 10, 10, 0.95);
