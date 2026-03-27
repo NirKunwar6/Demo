@@ -1,4 +1,4 @@
-     /* Brand: Mrtechnician 
+/* Brand: Mrtechnician 
    Owner: Nirdeshan Kunwar
    Updates: Slimmer Navigation & Typing Animation
 */
@@ -26,79 +26,79 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
-/* Mrtechnician Navigation - ULTIMATE ANCHOR */
+
+/* ULTRA-STATIONARY VERTICAL MENU 
+   Brand: Mrtechnician
+   Logic: Total Viewport Anchor
+*/
 
 .side-menu {
-    /* 1. THE LOCK: Fixed to the screen window, not the page */
-    position: fixed !important;
-    top: 30px !important;
-    right: 20px !important;
+    position: fixed !important;       /* Locks sidebar to viewport */
+    top: 40px !important;             /* Distance from top of viewport */
+    right: 25px !important;           /* Distance from right of viewport */
+    z-index: 10000 !important;        /* Always on top */
     
-    /* 2. THE LAYER: Must be higher than all sections/images */
-    z-index: 999999 !important; 
-    
-    /* 3. THE RESET: Prevents parent containers from moving it */
-    transform: translateZ(0) !important; 
-    left: auto !important;
-    bottom: auto !important;
-
-    /* Layout */
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-end !important;
-    gap: 12px !important;
-    pointer-events: auto !important;
-}
+    gap: 8px !important;
 
-.side-logo {
-    color: var(--text-gray);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    opacity: 0.8;
+    pointer-events: auto !important;  /* Buttons stay clickable */
+    
+    margin: 0 !important;             /* Prevent inherited margins */
+    padding: 0 !important;            /* Prevent inherited padding */
+    transform: none !important;       /* Prevent any transform drift */
 }
 
 .menu-items {
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .menu-items a {
     color: #ffffff !important;
     text-decoration: none !important;
-    font-size: 0.6rem !important;
+    font-size: 0.55rem !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
-    
-    /* The Sidebar Box */
-    background: rgba(5, 5, 5, 0.9);
+    display: block !important;        /* Ensures proper spacing */
+}
+
+
+/* Visuals */
+    background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
-    padding: 12px 20px;
-    border-right: 3px solid var(--gold);
-    width: 115px;
+    padding: 10px 15px;
+    border-right: 3px solid #D4AF37;
+    
+    /* Size Control */
+    width: 100px;
     text-align: right;
-    display: block !important;
-    transition: 0.3s ease-in-out;
+    white-space: nowrap;
+    
+    /* Animation */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* HOVER UPGRADE */
 .menu-items a:hover {
-    background: var(--gold);
-    color: #000 !important;
-    width: 130px;
+    background: #D4AF37;
+    color: #000000 !important;
+    width: 115px;
 }
 
-/* MOBILE VIEW - Forced Lock */
+/* MOBILE LOCK */
 @media (max-width: 768px) {
     .side-menu {
-        top: 15px !important;
-        right: 10px !important;
+        top: 20px !important;
+        right: 15px !important;
     }
     .menu-items a {
-        width: 100px;
-        font-size: 0.55rem;
-        padding: 10px 15px;
+        width: 85px;
+        font-size: 0.5rem;
     }
 }
 
@@ -116,7 +116,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
-    position: fixed;
+    position: relative;
     
     /* Glow effect */
     filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
@@ -124,13 +124,13 @@ body {
 
 /* Pulsing Aura behind the header */
 .glow-wrapper {
-    position: fixed;
+    position: relative;
     display: inline-block;
 }
 
 .glow-wrapper::after {
     content: "";
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -276,4 +276,9 @@ form input, form textarea {
         font-size: 0.45rem;
         padding: 5px 8px;
     }
-}   
+     }
+
+
+
+
+
