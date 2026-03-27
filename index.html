@@ -131,47 +131,9 @@
         </div>
     </section>
 
-<!-- Load Puter.com library -->
 <script src="https://js.puter.com/v2/"></script>
-
-<!-- Custom JS for your assistant -->
 <script>
-window.addEventListener("load", () => {
-    let contactStep = 0;
-    let contactData = {};
-
-    async function sendMessage() {
-        const input = document.getElementById("userInput");
-        const chatBox = document.getElementById("chatBox");
-        const userText = input.value.trim();
-        if (!userText) return;
-
-        chatBox.innerHTML += `<div class="user">${userText}</div>`;
-        input.value = "";
-
-        // contact flow
-        if (contactStep === 1) {
-            contactData.name = userText;
-            contactStep = 2;
-            chatBox.innerHTML += `<div class="bot">How do you know Nir?</div>`;
-            return;
-        }
-        if (contactStep === 2) {
-            contactData.relation = userText;
-            contactStep = 3;
-            chatBox.innerHTML += `<div class="bot">What is the reason you want to contact him?</div>`;
-            return;
-        }
-        if (contactStep === 3) {
-            contactData.reason = userText;
-            contactStep = 0;
-            chatBox.innerHTML += `<div class="bot">Thank you ${contactData.name}. Nir will review your request.</div>`;
-            console.log(contactData);
-            return;
-        }
-
-        // AI RESPONSE
-        cons NIR_BRAIN = `You are the official AI assistant of Nirdeshan Kunwar.
+  const NIR_BRAIN = `You are the official AI assistant of Nirdeshan Kunwar.
 
 Your job is to represent him professionally, confidently, and intelligently.
 
@@ -235,50 +197,50 @@ Tone:
 - Slightly friendly
 
 Keep answers short but impactful.`;
-            
-                async function send() {
-        const input = document.getElementById('userInput');
-        const box = document.getElementById('chatContainer');
-        if (!input.value.trim()) return;
 
-        const val = input.value;
-        box.innerHTML += `<div class="msg user-bubble">${val}</div>`;
-        input.value = '';
-        box.scrollTop = box.scrollHeight;
+  async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const box = document.getElementById("chatBox");
+      const userText = input.value.trim();
+      if (!userText) return;
 
-        // --- TYPING INDICATOR ADDED HERE ---
-        const typingId = "typing-" + Date.now();
-        box.innerHTML += `<div class="msg ai-bubble" id="${typingId}" style="font-style: italic; opacity: 0.7;">Typing...</div>`;
-        box.scrollTop = box.scrollHeight;
+      box.innerHTML += `<div class="user">${userText}</div>`;
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
 
-        try {
-            const resp = await puter.ai.chat([
-                { role: "system", content: NIR_BRAIN },
-                { role: "user", content: val }
-            ]);
+      // Typing indicator
+      const typingId = "typing-" + Date.now();
+      box.innerHTML += `<div class="bot" id="${typingId}" style="font-style: italic; opacity:0.7;">Typing...</div>`;
+      box.scrollTop = box.scrollHeight;
 
-            const aiText = resp.message.content;
+      try {
+          const resp = await puter.ai.chat([
+              { role: "system", content: NIR_BRAIN },
+              { role: "user", content: userText }
+          ]);
 
-            // --- REMOVE TYPING INDICATOR AND ADD REAL RESPONSE ---
-            const typingMsg = document.getElementById(typingId);
-            if(typingMsg) typingMsg.remove();
+          const aiText = resp.message.content;
 
-            box.innerHTML += `<div class="msg ai-bubble">${aiText}</div>`;
-            box.scrollTop = box.scrollHeight;
+          const typingMsg = document.getElementById(typingId);
+          if(typingMsg) typingMsg.remove();
 
-            emailjs.send('service_3d9vhhkzm', 'template_4tkhavgq', {
-                user_message: val,
-                ai_response: aiText
-            });
+          box.innerHTML += `<div class="bot">${aiText}</div>`;
+          box.scrollTop = box.scrollHeight;
 
-        } catch (e) { 
-            const typingMsg = document.getElementById(typingId);
-            if(typingMsg) typingMsg.innerText = "Connection lost. Please try again.";
-            console.error(e); 
-        }
-    }
+      } catch (e) {
+          const typingMsg = document.getElementById(typingId);
+          if(typingMsg) typingMsg.innerText = "Connection lost. Please try again.";
+          console.error(e);
+      }
+  }
+
+  document.getElementById("userInput").addEventListener("keypress", function(e){
+      if(e.key === "Enter") sendMessage();
+  });
+
+  document.querySelector(".chat-btn").addEventListener("click", sendMessage);
 </script>
-</body>
+    </body>
 </html>
             
     
