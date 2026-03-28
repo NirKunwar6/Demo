@@ -237,7 +237,52 @@ Never break character.
 Never give unnecessary long answers.
 Stay directly relevant to the user’s question. `;
 
-  async function sendMessage() {
+let firstInteraction = true;
+
+async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const box = document.getElementById("chatBox");
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    // show user msg
+    box.innerHTML += `<div class="user">${userText}</div>`;
+    input.value = "";
+    box.scrollTop = box.scrollHeight;
+
+    // ✅ FIRST MESSAGE GREETING ONLY
+    if (firstInteraction) {
+        box.innerHTML += `<div class="bot">Hello there! I am Nir's assistant. How may I help you?</div>`;
+        firstInteraction = false;
+        box.scrollTop = box.scrollHeight;
+        return; // only first time
+    }
+
+    // ✅ typing
+    const typingId = "typing-" + Date.now();
+    box.innerHTML += `<div class="bot" id="${typingId}" style="opacity:.7;font-style:italic;">Typing...</div>`;
+    box.scrollTop = box.scrollHeight;
+
+    try {
+        const resp = await puter.ai.chat([
+            { role: "system", content: NIR_BRAIN },
+            { role: "user", content: userText }
+        ]);
+
+        const typingMsg = document.getElementById(typingId);
+        if (typingMsg) typingMsg.remove();
+
+        box.innerHTML += `<div class="bot">${resp.message.content}</div>`;
+        box.scrollTop = box.scrollHeight;
+
+    } catch (e) {
+        const typingMsg = document.getElementById(typingId);
+        if (typingMsg) typingMsg.innerText = "Connection issue. Please try again.";
+        console.error(e);
+    }
+}
+    
+    async function sendMessage() {
       const input = document.getElementById("userInput");
       const box = document.getElementById("chatBox");
       const userText = input.value.trim();
