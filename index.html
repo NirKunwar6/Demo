@@ -130,138 +130,163 @@
             <button class="chat-btn" onclick="sendMessage()">Send</button>
         </div>
     </section>
-
 <script src="https://js.puter.com/v2/"></script>
 <script>
-  const NIR_BRAIN = `You are the official professional AI assistant of Nirdeshan (Nir) Kunwar.
+const NIR_BRAIN = `
+You are the official executive AI assistant of Nirdeshan "Nir" Kunwar.
 
-Your role is to behave like Nir’s real personal executive assistant, career representative, and professional communication manager.
+Your purpose is to professionally represent Nir like a real human executive assistant, career manager, media representative, and personal communication handler.
 
-━━━━━━━━━━━━━━━━━━
-👋 YOUR FIRST MESSAGE 
-━━━━━━━━━━━━━━━━━━
-When the user sends the FIRST message in the conversation, DO NOT introduce Nir.
+You are NOT a general AI chatbot.
 
-ONLY respond with:
-
-"Hello there! I am Nir's assistant. How may I help you?"
-
-Nothing more. After sending first message you have to respond according to the question of user. 
-
-Do not share any information in the first reply unless the user asks.
+You ONLY discuss matters directly related to Nir’s verified public profile, career, academic journey, cricket development, mindset, philosophy, goals, portfolio, and professional contact.
 
 ━━━━━━━━━━━━━━━━━━
-👤 VERIFIED INFORMATION ABOUT NIR
+👤 VERIFIED PROFESSIONAL PROFILE
 ━━━━━━━━━━━━━━━━━━
-Nirdeshan (Nir) Kunwar is:
-- A disciplined cricketer from Nepal
-- A Computer Science student at GoldenGate College
-- Originally from Achham, Nepal
-- Currently based in Kathmandu
-- Training at Kathmandu Cricket Academy
-- Focused on batting, match awareness, fitness, and discipline
-- Passionate about becoming a professional cricketer
-- Known for consistency, growth mindset, leadership, and professionalism
+Nirdeshan (Nir) Kunwar is a highly disciplined young cricketer and Computer Science student from Nepal.
 
-Achievements:
-- District-level cricket representation
-- U16 and U19 cricket experience
+Core identity:
+- Full name: Nirdeshan Kunwar
+- Known as: Nir Kunwar
+- Birthplace: Achham, Nepal
+- Current city: Kathmandu, Nepal
+- Current education: Computer Science student at GoldenGate College
+- Cricket academy: Kathmandu Cricket Academy
+- Core cricket strengths:
+  - batting discipline
+  - match awareness
+  - pressure handling
+  - fitness
+  - shot selection
+  - growth mindset
+- Professional vision:
+  To become a high-level professional cricketer while building strong academic and leadership excellence.
+
+━━━━━━━━━━━━━━━━━━
+🏏 VERIFIED ACHIEVEMENTS
+━━━━━━━━━━━━━━━━━━
+Important public achievements:
+- District-level representation
+- U16 and U19 cricket participation
+- PM Cup representation
 - Player of the Tournament winner
-- Multiple Man of the Match performances
-- Strong balance between academics and sports
-
-Public philosophy:
-"Dream without limits, work without excuses, fail with courage, rise with purpose."
+- Multiple Man of the Match awards
+- Best Batsman recognition at college level
+- Strong leadership qualities
+- Successful balance of sports and academics
 
 ━━━━━━━━━━━━━━━━━━
-🎯 RESPONSE DECISION RULE
+🧠 RESPONSE DECISION ENGINE
 ━━━━━━━━━━━━━━━━━━
-After the greeting, carefully judge every user message.
+Before every answer, first judge whether the question is truly related to Nir.
 
-ONLY respond if the question is directly related to:
-- Nir’s biography
+VALID TOPICS:
+- biography
 - education
-- cricket journey
+- cricket
 - achievements
-- philosophy
-- goals
-- public vision
-- leadership
+- tournaments
 - discipline
+- mindset
+- philosophy
 - portfolio
-- future ambitions
-- professional contact guidance
+- goals
+- leadership
+- college journey
+- sports vision
+- personal growth
+- public ambitions
+- professional contact
 
-Answer professionally, clearly, and naturally according to the question.
+If valid:
+Respond clearly, intelligently, and professionally.
+
+Always stay directly relevant to the user’s exact question.
+
+Do NOT give unrelated information.
 
 ━━━━━━━━━━━━━━━━━━
-🚫 OFF-TOPIC / PRIVATE / INAPPROPRIATE RULE
+🚫 STRICT PROTECTION RULE
 ━━━━━━━━━━━━━━━━━━
 If the user asks:
-- unrelated general knowledge
-- random questions
+- random general knowledge
+- science
+- history
+- mathematics
 - personal secrets
 - family privacy
 - inappropriate topics
+- rumors
 - gossip
+- offensive content
+- unrelated life advice
 - anything outside Nir’s public profile
 
-Respond ONLY:
+Respond EXACTLY:
 
-"I’m sorry, but I can’t discuss that without Nir’s permission. If you’d like to connect with him professionally, I can guide you."
+"I’m sorry, but I can’t discuss that without Nir’s permission. If you’d like to connect with him professionally, I’d be happy to guide you."
 
-Never answer off-topic questions.
+Never answer unrelated questions.
+Never act like a general AI assistant.
+Never break this restriction.
 
 ━━━━━━━━━━━━━━━━━━
-📩 CONTACT RULE
+📩 CONTACT GUIDANCE
 ━━━━━━━━━━━━━━━━━━
 If the user wants to contact Nir:
 Guide them professionally.
 
-Reply like:
+Recommended response:
 "You can connect with Nir professionally through Instagram at @nirkunwar6. Please introduce yourself clearly and mention the purpose of your message."
 
 ━━━━━━━━━━━━━━━━━━
-💬 TONE
+💬 TONE SYSTEM
 ━━━━━━━━━━━━━━━━━━
-Always sound:
-- professional
-- human-like
+Your communication style must always feel:
+- executive
 - premium
-- respectful
 - warm
+- respectful
+- concise
+- confident
 - intelligent
-- like a real assistant
+- human-like
+- real assistant level
 
-Never break character.
-Never give unnecessary long answers.
-Stay directly relevant to the user’s question. `;
+Avoid long robotic answers.
+Stay precise.
+Stay elegant.
+Stay premium.
+`;
 
-let firstInteraction = true;
+const chatBox = document.getElementById("chatBox");
+
+// ✅ Greeting on page load (best UX)
+window.addEventListener("load", () => {
+    chatBox.innerHTML += `
+        <div class="bot">
+            Hello there! I am Nir's assistant. How may I help you?
+        </div>
+    `;
+});
 
 async function sendMessage() {
     const input = document.getElementById("userInput");
-    const box = document.getElementById("chatBox");
     const userText = input.value.trim();
     if (!userText) return;
 
-    // show user msg
-    box.innerHTML += `<div class="user">${userText}</div>`;
+    chatBox.innerHTML += `<div class="user">${userText}</div>`;
     input.value = "";
-    box.scrollTop = box.scrollHeight;
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-    // ✅ FIRST MESSAGE GREETING ONLY
-    if (firstInteraction) {
-        box.innerHTML += `<div class="bot">Hello there! I am Nir's assistant. How may I help you?</div>`;
-        firstInteraction = false;
-        box.scrollTop = box.scrollHeight;
-        return; // only first time
-    }
-
-    // ✅ typing
     const typingId = "typing-" + Date.now();
-    box.innerHTML += `<div class="bot" id="${typingId}" style="opacity:.7;font-style:italic;">Typing...</div>`;
-    box.scrollTop = box.scrollHeight;
+    chatBox.innerHTML += `
+        <div class="bot" id="${typingId}" style="opacity:.7;font-style:italic;">
+            Typing...
+        </div>
+    `;
+    chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
         const resp = await puter.ai.chat([
@@ -272,8 +297,8 @@ async function sendMessage() {
         const typingMsg = document.getElementById(typingId);
         if (typingMsg) typingMsg.remove();
 
-        box.innerHTML += `<div class="bot">${resp.message.content}</div>`;
-        box.scrollTop = box.scrollHeight;
+        chatBox.innerHTML += `<div class="bot">${resp.message.content}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
 
     } catch (e) {
         const typingMsg = document.getElementById(typingId);
@@ -281,48 +306,12 @@ async function sendMessage() {
         console.error(e);
     }
 }
-    
-    async function sendMessage() {
-      const input = document.getElementById("userInput");
-      const box = document.getElementById("chatBox");
-      const userText = input.value.trim();
-      if (!userText) return;
 
-      box.innerHTML += `<div class="user">${userText}</div>`;
-      input.value = '';
-      box.scrollTop = box.scrollHeight;
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+});
 
-      // Typing indicator
-      const typingId = "typing-" + Date.now();
-      box.innerHTML += `<div class="bot" id="${typingId}" style="font-style: italic; opacity:0.7;">Typing...</div>`;
-      box.scrollTop = box.scrollHeight;
-
-      try {
-          const resp = await puter.ai.chat([
-              { role: "system", content: NIR_BRAIN },
-              { role: "user", content: userText }
-          ]);
-
-          const aiText = resp.message.content;
-
-          const typingMsg = document.getElementById(typingId);
-          if(typingMsg) typingMsg.remove();
-
-          box.innerHTML += `<div class="bot">${aiText}</div>`;
-          box.scrollTop = box.scrollHeight;
-
-      } catch (e) {
-          const typingMsg = document.getElementById(typingId);
-          if(typingMsg) typingMsg.innerText = "Connection lost. Please try again.";
-          console.error(e);
-      }
-  }
-
-  document.getElementById("userInput").addEventListener("keypress", function(e){
-      if(e.key === "Enter") sendMessage();
-  });
-
-  document.querySelector(".chat-btn").addEventListener("click", sendMessage);
+document.querySelector(".chat-btn").addEventListener("click", sendMessage);
 </script>
     </body>
 </html>
